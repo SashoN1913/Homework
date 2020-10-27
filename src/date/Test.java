@@ -2,7 +2,6 @@ package date;
 
 import java.util.Scanner;
 
-
 public class Test {
 
 public static void main(String[] args) {
@@ -71,10 +70,18 @@ public static void main(String[] args) {
 		{
 			System.out.println(ds[i].getSeconds() + ":" + ds[i].getMinutes() + ":" + ds[i].getTime() + " " + ds[i].getDay() + ":" + ds[i].getMonth( ) + ":" + ds[i].getYear());
 		}
+		System.out.println("Enter day of week: ");
+		int day = scan.nextInt();
+		System.out.println("Enter how many characters form the day you want: ");
+		int characters = scan.nextInt();
+		System.out.println(DayOfWeek.getDay(day).toString(characters));
+		System.out.println(d.ToString());
+		
 		scan.close();
 
 	}
 	
+
 	public static void sortDate(Date [] d1) 
 	{
 		Date temp;

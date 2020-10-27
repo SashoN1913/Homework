@@ -4,17 +4,53 @@ package date;
 public class Date {
 
 	private double seconds;
-	private double minutes;
-	private double time;
-	private double day;
-	private double month;
-	private double year;
+	private int minutes;
+	private int time;
+	private int day;
+	private int month;
+	private int year;
 
+	private DayOfWeek dayOfWeek;
+	
+	
 	public Date() {
-
+		seconds = 0;
+		minutes = 0;
+		time = 0;
+		day = 0;
+		month = 0;
+		year = 0;
+		
+	}
+	
+	public Date(DayOfWeek dayOfWeek)
+	{
+		this.dayOfWeek = dayOfWeek;
 	}
 
-	public Date(int secondsValue, int minutesValue, int timeValue, int dayValue, int monthValue, int yearValue) {
+	public Date(int dayOfWeek)
+	{
+		this.dayOfWeek = DayOfWeek.getDay(dayOfWeek - 1);
+	}
+	
+	public void setDayOfWeek(DayOfWeek dayOfWeek)
+	{
+		this.dayOfWeek = dayOfWeek;
+	}
+	
+	public DayOfWeek getDayOfWeek()
+	{
+		return this.dayOfWeek;
+	}
+	
+	public DayOfWeek whichDayOfWeek()
+	{
+		int[] f = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+		this.year -= this.month < 3 ? this.month : 0;
+		return DayOfWeek.getDay(((this.year + this.year/4 - this.year/100 + this.year/400 + f[this.month-1] + this.day) % 7) - 1);
+	}
+	
+	public Date(double secondsValue, int minutesValue, int timeValue, int dayValue, int monthValue, int yearValue) {
 		seconds = secondsValue;
 		minutes = minutesValue;
 		time = timeValue;
@@ -31,78 +67,68 @@ public class Date {
 
 	}
 
-	public double getMinutes() {
+	public int getMinutes() {
 
 		return minutes;
 
 	}
 
-	public double getTime() {
+	public int getTime() {
 
 		return time;
 
 	}
 
-	public double getMonth() {
+	public int getMonth() {
 
 		return month;
 
 	}
 
-	public double getYear() {
+	public int getYear() {
 
 		return year;
 
 	}
 
-	public double getDay() {
+	public int getDay() {
 
 		return day;
 
 	}
 
-	public double setSeconds(double secondsValue) {
-
+	public void setSeconds(double secondsValue) 
+	{
 		seconds = secondsValue;
-		return secondsValue;
-
 	}
 
-	public double setMinutes(double minutesValue) {
-
-		minutes = minutesValue;
-		return minutesValue;
-
+	public void setMinutes(int minutesValue) 
+	{
+		minutes = minutesValue;	
 	}
 
-	public double setTime(double timeValue) {
+	public void setTime(int timeValue) 
+	{
 		time = timeValue;
-		return timeValue;
-
 	}
 
-	public double setMonth(double monthValue) {
+	public void setMonth(int monthValue) 
+	{
 		month = monthValue;
-		return monthValue;
-
 	}
 
-	public double setYear(double yearValue) {
-
+	public void setYear(int yearValue) 
+	{
 		year = yearValue;
-		return yearValue;
-
 	}
 
-	public double setDay(double dayValue) {
-
+	public void setDay(int dayValue) 
+	{
 		day = dayValue;
-		return dayValue;
-
 	}
 
-	public Date(double secondsValue, double minutesValue, double timeValue, double dayValue, double monthValue,
-			double yearValue) {
+	public Date(int secondsValue, int minutesValue, int timeValue, int dayValue, int monthValue,
+			int yearValue) {
 
 		seconds = seconds + 1;
 		minutes = minutesValue;
@@ -113,7 +139,7 @@ public class Date {
 
 	}
 
-	public double comapreTo(Date d) {
+	public int comapreTo(Date d) {
 
 		if (year > d.getYear()) {
 			return -1;
@@ -249,8 +275,12 @@ public class Date {
 			}
 		}
 		System.out.println(d.getSeconds() + ":" + d.getMinutes() + ":" + d.getTime() + " " + d.getDay() + ":"
-				+ d.getMonth() + ":" + d.getYear());
+				+ d.getMonth() + ":" + d.getYear() + " " + whichDayOfWeek());
 	}
 
-
+	public String ToString()
+	{
+		return time + ":" + minutes + ":" + seconds + " of " + day + "." + month + "." + year + ", " + whichDayOfWeek();  
+	}
+	
 }
