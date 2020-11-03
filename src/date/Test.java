@@ -77,6 +77,30 @@ public static void main(String[] args) {
 		System.out.println(DayOfWeek.getDay(day).toString(characters));
 		System.out.println(d.ToString());
 		
+		System.out.println("Enter name: ");
+		String name = scan.next();
+		Event event = new Event(d , name);
+		System.out.println(event.toString());
+		
+		
+		Reminder reminder = new Reminder();
+		Date momsBirthday = new Date(2, 10, 1988);
+		
+		reminder.addEvent(new Event(momsBirthday, "Say a Happy Birthday to her"));
+		reminder.addEvent(new Event(momsBirthday, "Something"));
+	
+		
+		reminder.remind();
+		
+		Event[] eventsAtBirthday = reminder.getAllEvents(momsBirthday);
+		
+		System.out.println("Events at birthday:");
+		
+		for(int i = 0; i < eventsAtBirthday.length; i++)
+		{
+			System.out.println(eventsAtBirthday[i].toString());
+		}
+		
 		scan.close();
 
 	}

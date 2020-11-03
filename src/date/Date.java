@@ -12,6 +12,13 @@ public class Date {
 
 	private DayOfWeek dayOfWeek;
 	
+	public Date(int dayValue , int monthValue , int yearValue)
+	{
+		day = dayValue;
+		month = monthValue;
+		year = yearValue;
+	}
+	
 	
 	public Date() {
 		seconds = 0;
@@ -137,6 +144,22 @@ public class Date {
 		month = monthValue;
 		year = yearValue;
 
+	}
+	
+	public boolean IsSameDate(Date d) 
+	{
+		boolean IsSameDate = false;
+		if(year == d.getYear() &&  month == d.getMonth() && day == d.getDay()) 
+		{
+			IsSameDate=true;
+		}
+		
+		return IsSameDate;
+	}
+	
+	public int compareToOtherDate(Date d)
+	{
+		return 1;
 	}
 
 	public int comapreTo(Date d) {
