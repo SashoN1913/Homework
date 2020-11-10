@@ -35,18 +35,30 @@ public class Reminder {
 	{
 		Event[] currentDateEvents = new Event[30];
 		Date currentDate;
-		for(int i = 0;i < 3;i++) 
+		int count = 0;
+		for(int i = 0;i < number;i++) 
 		{
-			//currentDateEvents[i] = new Event();
-			currentDate = events[i].getDate();
-			
-			if(date.IsSameDate(currentDate) == true) 
+			if (events[i].getDate().IsSameDate(date) == true) 
 			{
-				currentDateEvents[i] = events[i];
-				
+				count++;
 			}
 		}
-		return currentDateEvents;
+		Event[] eventsOn = new Event[count];
+		
+		
+		int currentEventIndex = 0;
+		for (int i = 0; i < number; i++) 
+		{
+			currentDate = events[i].getDate();
+
+			if (date.IsSameDate(currentDate) == true) 
+			{
+				eventsOn[currentEventIndex] = new Event();
+				eventsOn[currentEventIndex] = events[i];
+				currentEventIndex++;
+			}
+		}
+		return eventsOn;
 	}
 	
 	

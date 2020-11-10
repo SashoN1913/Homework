@@ -1,7 +1,8 @@
 package date;
 
 
-public class Date {
+public class Date 
+{
 
 	private double seconds;
 	private int minutes;
